@@ -1,0 +1,67 @@
+
+
+.ui-widget { font-size:11px }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-size:11px }
+
+.main_panel {
+    border: 1px solid grey;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    min-width:200px;
+    background: #F2F2F2;
+}
+
+.search_panel {
+    padding: 8px;
+    margin: 10px;
+}
+
+.search_panel td{
+    border:none;
+	vertical-align:middle;
+}
+
+.result_panel {
+    position: absolute;
+    top: 84px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    overflow: auto;
+}
+
+legend {
+ font-weight:bold;
+ color: #222222;
+}
+
+#wait_img {
+	display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+}
+
+#data_tab table {
+    width: 100%;
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+#data_tab th {
+	text-align: left;
+    vertical-align: top;
+    padding: 4px 8px;
+    border: 1px solid white
+}
+#data_tab td {
+    text-align: left;
+    vertical-align: top;
+    padding: 4px 8px;
+    border: 1px solid white
+}
