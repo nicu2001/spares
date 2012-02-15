@@ -5,13 +5,13 @@ $tmp_dir = "c:\\tmp";
 $dir_delimiter = "\\";
 
 // DataBases
-// TecDoc DB
+// -- TecDoc DB
 $dbserv = "localhost";
 $dbname = "tecdoc";
 $dbuser = "root";
 $dbpass = "";
-
-// Stock DB
+//
+// -- Stock DB
 $stock_owner_id = 1001;
 $stock_serv = "localhost";
 $stock_base = "test";
