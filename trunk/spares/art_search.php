@@ -45,6 +45,8 @@ while( true ){
         break;
     }
 
+	$db->exec('SET CHARACTER SET utf8');
+	
 /*
 SELECT distinct art_id, ga_id, ga_tex.tex_text AS gades, ga_assembly_tex.tex_text 
        AS ga_assembly, art_sup_id, arl_kind, arl_display_nr, art_replacement 
@@ -216,7 +218,7 @@ $req = "SELECT lga_art_id, gra_tab_nr, gra_grd_id, doc_extension ".
                     !is_null($row['gra_grd_id']) &&
                     !is_null($row['doc_extension'])
                 )
-                $data[$i]['photo'] = $row['gra_tab_nr'].'/'.$row['gra_grd_id'].'.'.$row['doc_extension'];
+                $data[$i]['photo'] = $row['gra_tab_nr'].'/'.$row['gra_grd_id'].'.'.strtolower($row['doc_extension']);
             }
         }
     }
