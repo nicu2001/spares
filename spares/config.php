@@ -19,7 +19,7 @@ $stock_user = "root";
 $stock_pass = "";
 
 // Graphics
-$img_dir = "h:\\tecdoc_img";
+$img_dir = "e:\\tecdoc_img";
 $err_file = "c:\\tmp\\wizard.jpg";
 $convertor = "c:\\bin\\imagick\\convert";
 

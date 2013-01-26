@@ -1,37 +1,33 @@
 <?
 
-session_start();
-
 // Ajax request legality check
 require_once('config.php');
 require_once('functions.php');
+
 
 if( !check_ajax_referer() ) {
     header( 'Location: index.php' );
     exit(0);
 }
 
-$errmess = '';
+$ctm = (isset($country_code) ? $country_code : 223 )+2;
 
+$errmess = '';
 while( true ){
 
 // Проверка корректности протокола
 
     if( !isset($_REQUEST['oper']) || ( $oper = strip_tags(trim($_REQUEST['oper']))) != 'search_articles' ||
-        !isset($_REQUEST['country_list']) || !is_numeric($_REQUEST['country_list']) || 
-        !isset($_REQUEST['art_code']) || $_REQUEST['art_code'] == '' || !isset($_REQUEST['doing']) )
+        !isset($_REQUEST['art_code']) || ( $art = strip_tags(trim($_REQUEST['art_code']))) == '' || 
+		!isset($_REQUEST['doing']) )
     {
         $errmess = "Нарушение протокола";
         break;
     }
-
-    $ctm = $_REQUEST['country_list']+2;
-    $_SESSION['COU_ID'] = $ctm;
-    
-    $art = $_REQUEST['art_code'];
     
     try {
         $db = new PDO("mysql:host=".$dbserv.";dbname=".$dbname.";charset=utf8",$dbuser,$dbpass);
+		$db->exec("SET CHARACTER SET utf8");
     } catch (PDOException $e) {
         $errmess =  "Dictionary DataBase connection error";
         break;
@@ -40,6 +36,7 @@ while( true ){
     try {
         $stock_db = new PDO("mysql:host=".$stock_serv.
                 ";dbname=".$stock_base.";charset=utf8",$stock_user,$stock_pass);
+		$stock_db->exec("SET CHARACTER SET utf8");
     } catch (PDOException $e) {
         $errmess =  "Stock DataBase connection error";
         break;
@@ -126,9 +123,6 @@ $req = "SELECT art_id, art_article_nr, sup_brand ".
             if( $data[$i]['art_id'] == $row['art_id'] ) {
                 $data[$i]['art_number'] = $row['art_article_nr'];
                 $data[$i]['sup_brand'] = ucwords(strtolower(htmlspecialchars($row['sup_brand'])));
-//                $f_art_name = htmlspecialchars($row['full_art_name'].
-//                        (is_null($row['nick_art_name']) ? '' : " ".$row['nick_art_name'] ));
-//                $data[$i]['art_name'] = $f_art_name;
             }
         }
     }
